@@ -5,19 +5,18 @@
         Каталог
       </h1>
       <span class="content__info">
-        152 товара
+        {{filteredProducts.length}}
       </span>
     </div>
 
     <div class="content__catalog">
-      <ProductFilter :price-from.sync="filterPriceFrom" :price-to.sync="filterPriceTo" :category-id.sync="filterCategoryID"/>
+      <ProductFilter :price-from.sync="filterPriceFrom" :price-to.sync="filterPriceTo" :category-id.sync="filterCategoryID"/> 
       <section class="catalog">
-        <ProductList :products="products"/>
-        <BasePagination v-model="page" :count="countProducts" :per-page="productPerPage"/>
-      </section> 
-
+      <ProductList :products="products"/>
+      <BasePagination v-model="page" :count="countProducts" :per-page="productPerPage"/>
+    </section>
     </div>
-
+    
   </main>
 </template>
 
@@ -35,6 +34,7 @@ export default {
       filterPriceFrom: 0,
       filterPriceTo: 0,
       filterCategoryID: 0,
+      filterColor: '',
       page: 1,
       productPerPage: 3,
     }
@@ -45,12 +45,13 @@ export default {
       if(this.filterPriceFrom > 0) {
         filterProducts = filterProducts.filter((el) => el.price > this.filterPriceFrom);
       }
-      if(this.filterPriceto > 0) {
+      if(this.filterPriceTo > 0) {
         filterProducts = filterProducts.filter((el) => el.price < this.filterPriceTo);
       }
       if(this.filterCategoryID) {
         filterProducts = filterProducts.filter((el) => el.categoryId === this.filterCategoryID);
       }
+      
       return filterProducts;
     },
     products() {
