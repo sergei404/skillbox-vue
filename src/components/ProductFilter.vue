@@ -30,8 +30,8 @@
         <ul class="colors">
           <li class="colors__item" v-for="(color, index) in colors" :key="index">
             <label class="colors__label">
-              <input class="colors__radio sr-only" type="radio" name="color" value="color">
-              <span class="colors__value" v-bind:style="getColor(color)"></span>
+              <input v-model="currentColor" class="colors__radio sr-only" type="radio" :value="color">
+              <span class="colors__value" v-bind:style="{background: color}"></span>
             </label>
           </li>
         </ul>
@@ -111,18 +111,16 @@
 
 <script>
 import {categories, colours} from '../data/categories'
-import {getColor} from '../data/utils'
 export default {
   data() {
     return {
       currentPriceFrom: 0,
       currentPriceTo: 0,
       currentCategoryId: 0,
-      color: '#73B6EA',
-      getColor
+      currentColor: '',
     }
   },
-  props: ['priceFrom', 'priceTo', 'categoryId'],
+  props: ['priceFrom', 'priceTo', 'categoryId', 'color'],
   computed: {
     categories() {
       return categories;
@@ -140,6 +138,10 @@ export default {
     },
     categoryId(value) {
       this.currentCategoryId = value;
+    },
+    color(value) {
+      console.log(value);
+      this.currentColor = value;
     }
   },
   methods: {
@@ -147,12 +149,17 @@ export default {
       this.$emit('update:priceFrom', this.currentPriceFrom);
       this.$emit('update:priceTo', this.currentPriceTo);
       this.$emit('update:categoryId', this.currentCategoryId);
+      this.$emit('update:color', this.currentColor);
     },
     reset() {
       this.$emit('update:priceFrom', 0);
       this.$emit('update:priceTo', 0);
       this.$emit('update:categoryId', 0);
+      this.$emit('update:color', '');
     },
+    getElemColor({target}) {
+      console.log(target.name);
+    }
   }
 }
 </script>

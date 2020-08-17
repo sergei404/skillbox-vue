@@ -10,8 +10,3 @@ export const shuffle = (arr) => {
   return arr;
 };
 
-export const getColor =(value) =>{
-  return {
-    'backgroundColor': value
-  }
-}

@@ -14,7 +14,7 @@
         <li class="colors__item" v-for="color in product.colors" :key="color">
           <label class="colors__label">
             <input class="colors__radio sr-only" type="radio" value="color" >
-            <span class="colors__value" v-bind:style="getColor(color)"></span>
+            <span class="colors__value" v-bind:style="{background: color}"></span>
           </label>
         </li>
       </ul>
@@ -22,13 +22,8 @@
 </template>
 
 <script>
-import {getColor} from '../data/utils'
+
 export default {
   props: ['product'],
-  data() {
-    return {
-      getColor
-    }
-  },
 }
 </script>
