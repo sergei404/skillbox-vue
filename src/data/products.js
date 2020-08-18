@@ -4,7 +4,7 @@ const colors = colours.slice()
 
 export default [
   {
-    id: ('' + Math.random()).slice(2),
+    id: 1,
     categoryId: 4,
     title: 'Смузи',
     price: getRandomNumber(3000, 40000),
@@ -12,7 +12,7 @@ export default [
     colors: shuffle(colors).slice(0, 3)
   },
   {
-    id: ('' + Math.random()).slice(2),
+    id: 2,
     categoryId: 1,
     title: 'Кастрюля',
     price: getRandomNumber(3000, 40000),
@@ -20,7 +20,7 @@ export default [
     colors: shuffle(colors).slice(0, 3)
   },
   {
-    id: ('' + Math.random()).slice(2),
+    id: 3,
     categoryId: 4,
     title: 'Лягушка',
     price: getRandomNumber(3000, 40000),
@@ -28,7 +28,7 @@ export default [
     colors: shuffle(colors).slice(0, 3)
   },
   {
-    id: ('' + Math.random()).slice(2),
+    id: 4,
     categoryId: 3,
     title: 'Кресло',
     price: getRandomNumber(3000, 40000),
@@ -36,7 +36,7 @@ export default [
     colors: shuffle(colors).slice(0, 3)
   },
   {
-    id: ('' + Math.random()).slice(2),
+    id: 5,
     categoryId: 2,
     title: 'Сливы',
     price: getRandomNumber(3000, 40000),
@@ -44,7 +44,7 @@ export default [
     colors: shuffle(colors).slice(0, 3)
   },
   {
-    id: ('' + Math.random()).slice(2),
+    id: 6,
     categoryId: 5,
     title: 'Набор инструментов',
     price: getRandomNumber(3000, 40000),
@@ -52,7 +52,7 @@ export default [
     colors: shuffle(colors).slice(0, 3)
   },
   {
-    id: ('' + Math.random()).slice(2),
+    id: 7,
     categoryId: 3,
     title: 'Канцелярский набор',
     price: getRandomNumber(3000, 40000),
@@ -60,7 +60,7 @@ export default [
     colors: shuffle(colors).slice(0, 3)
   },
   {
-    id: ('' + Math.random()).slice(2),
+    id: 8,
     categoryId: 5,
     title: 'Компрессор',
     price: getRandomNumber(3000, 40000),
@@ -68,7 +68,7 @@ export default [
     colors: shuffle(colors).slice(0, 3)
   },
   {
-    id: ('' + Math.random()).slice(2),
+    id: 9,
     categoryId: 1,
     title: 'Часы',
     price: getRandomNumber(3000, 40000),
@@ -76,7 +76,7 @@ export default [
     colors: shuffle(colors).slice(0, 3)
   },
   {
-    id: ('' + Math.random()).slice(2),
+    id: 10,
     categoryId: 4,
     title: 'Мороженое',
     price: getRandomNumber(3000, 40000),
@@ -84,7 +84,7 @@ export default [
     colors: shuffle(colors).slice(0, 3)
   },
   {
-    id: ('' + Math.random()).slice(2),
+    id: 11,
     categoryId: 2,
     title: 'Бокал',
     price: getRandomNumber(3000, 40000),
@@ -92,7 +92,7 @@ export default [
     colors: shuffle(colors).slice(0, 3)
   },
   {
-    id: ('' + Math.random()).slice(2),
+    id: 12,
     title: 'Мотоцикл',
     price: getRandomNumber(3000, 40000),
     image: 'https://cdn.pixabay.com/photo/2020/07/14/09/10/motorcycle-5403549__340.jpg',
