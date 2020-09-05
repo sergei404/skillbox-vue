@@ -1,5 +1,7 @@
 <template>
-  <p class="trip-events__msg">Страница не найдена</p>
+  <div class="content">
+    <p class="trip-events__msg">Страница не найдена</p>
+  </div>
 </template>
 
 <script>
@@ -8,17 +10,19 @@ export default {
 }
 </script>
 
-<style>
- .trip-events__msg {
-  margin: 0;
-  padding: 20.5% 0;
-  font-weight: 500;
-  font-size: 44px;
-  line-height: 60px;
-  text-align: center;
-  color: #eee5e5;
-  background-color: #f8f0f0;
-  opacity: 0.89; }
-  .trip-events__msg--hidden {
-    display: none; }
+<style scoped>
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f0f0;
+    height: calc(100vh - 400px);
+  }
+  .trip-events__msg {
+    font-weight: 500;
+    font-size: 44px;
+    line-height: 60px;
+    color: #eee5e5;
+    opacity: 0.89; 
+  }
 </style>

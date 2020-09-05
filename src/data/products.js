@@ -1,5 +1,5 @@
 import {colours} from './categories';
-import {getRandomNumber, shuffle} from './utils'
+import {getRandomNumber, shuffle} from '../helpers/utils.js'
 const colors = colours.slice()
 
 export default [

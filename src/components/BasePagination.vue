@@ -21,7 +21,7 @@
       </li>
       <li class="pagination__item">
         <a href="#" class="pagination__link pagination__link--arrow" 
-          :class="{'pagination__link--disabled':page === Math.ceil(this.count / this.perPage)}"
+          :class="{'pagination__link--disabled':page === pages}"
           aria-label="Следующая страница"
           @click.prevent="paginate(++page)"
         >

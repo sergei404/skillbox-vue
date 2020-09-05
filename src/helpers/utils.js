@@ -10,3 +10,6 @@ export const shuffle = (arr) => {
   return arr;
 };
 
+export function numberFormat(num) {
+  return new Intl.NumberFormat('ru-RU').format(num)
+}

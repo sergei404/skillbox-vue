@@ -52,6 +52,7 @@ export default {
       }
       if(this.filterColor) {
         filterProducts = filterProducts.filter((el) => el.colors.includes(this.filterColor)); 
+        console.log(filterProducts);
       }
       return filterProducts;
     },
