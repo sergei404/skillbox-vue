@@ -1,5 +1,5 @@
-import eventBus from '@/eventBus';
+// import eventBus from '@/eventBus';
 
-export default function goToPage(pageName, pageParam) {
-  eventBus.$emit('goToPage', pageName, pageParam)
-}
+// export default function goToPage(pageName, pageParam) {
+//   eventBus.$emit('goToPage', pageName, pageParam)
+// }

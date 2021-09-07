@@ -1,6 +1,6 @@
-import {colours} from './categories';
+import {colors} from './categories';
 import {getRandomNumber, shuffle} from '../helpers/utils.js'
-const colors = colours.slice()
+//const colors = colours.slice()
 
 export default [
   {
@@ -96,6 +96,6 @@ export default [
     title: 'Мотоцикл',
     price: getRandomNumber(3000, 40000),
     image: 'https://cdn.pixabay.com/photo/2020/07/14/09/10/motorcycle-5403549__340.jpg',
-    colors: shuffle(colors).slice(0, 3)
+    colors:shuffle(colors).slice(0, 3)
   },
 ]

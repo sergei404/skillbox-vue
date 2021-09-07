@@ -21,7 +21,7 @@ export const categories = [
   },
 ];
 
-export const colours = [
+export const colors = [
   "#73B6EA",
   "#FFBE15",
   "#939393",
@@ -30,3 +30,12 @@ export const colours = [
   "#FFF",
   "#000"
 ];
+
+export const gigabates = [
+  {volume: 8, amount: 313},
+  {volume: 16, amount: 154},
+  {volume: 32, amount:431},
+  {volume: 64, amount:377},
+  {volume: 128, amount:269},
+  {volume: 264, amount:119},
+]
