@@ -26,7 +26,7 @@
           <img
             width="570"
             height="570"
-            :src="product.image" :alt="product.title"
+            :src="product.image" alt="product.title"
           />
         </div>
         <!-- <ul class="pics__list">
@@ -157,10 +157,12 @@
                 </button>
               </div>
 
-              <button class="button button--primery" type="submit">
+              <button class="button button--primery" type="submit"
+              @click="toCardMessage">
                 В корзину
               </button>
             </div>
+            <p class="card-message" v-if="toCard">товар добавлен в корзину</p>
           </form>
         </div>
       </div>
@@ -236,7 +238,8 @@ import {numberFormat} from '../helpers/utils.js'
 export default {
   data() {
     return {
-      productAmount: 1
+      productAmount: 1,
+      toCard: false
     }
   },
   computed: {
@@ -250,6 +253,7 @@ export default {
   methods: {
     goToPage,
     addToCard() {
+      this.toCard = true
       this.$store.commit('addProductToCard', {productId: this.product.id, amount: this.productAmount})
       this.productAmount = 1
     },
@@ -260,6 +264,9 @@ export default {
       if (this.productAmount > 1) {
         this.productAmount--
       }
+    },
+    toCardMessage() {
+      setTimeout(() => this.toCard = false, 3000)
     }
   },
   filters: {
@@ -271,6 +278,15 @@ export default {
 <style scoped>
 .colors {
   background-color: transparent;
+}
+.card-message {
+  width: 83%;
+  background-color: #9eff00;
+  color: #222;
+  font-family: "PressStart";
+  font-size: 13px;
+  white-space: nowrap;
+  padding: 15px 20px;
 }
 </style>
 >
