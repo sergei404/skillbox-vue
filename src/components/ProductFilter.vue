@@ -58,20 +58,20 @@
         <ul class="colors">
           <li
             class="colors__item"
-            v-for="(color, index) in colors"
-            :key="index"
+            v-for="color in colors"
+            :key="color.id"
           >
             <label class="colors__label">
               <input
-                v-model="currentColor"
+                v-model="currentColorId"
                 class="colors__radio sr-only"
                 type="radio"
                 name="color"
-                :value="color"
+                :value="color.id"
               />
               <span
                 class="colors__value"
-                v-bind:style="{ background: color }"
+                v-bind:style="{ background: color.code }"
               ></span>
             </label>
           </li>
@@ -117,23 +117,29 @@
 </template>
 
 <script>
-import { categories, colours, gigabates } from "../data/categories";
+import { gigabates } from "../data/categories";
+import {API_URL} from '@/config.js'
+import axios from 'axios';
+
 export default {
   data() {
     return {
       currentPriceFrom: 0,
       currentPriceTo: 0,
       currentCategoryId: 0,
-      currentColor: "",
+      currentColorId: 0,
+
+      categoriesData: null,
+      colorsData: null
     };
   },
   props: ["priceFrom", "priceTo", "categoryId", "color"],
   computed: {
     categories() {
-      return categories;
+      return this.categoriesData ? this.categoriesData.items : [];
     },
     colors() {
-      return colours;
+      return this.colorsData ? this.colorsData.items : [];
     },
     gigabates() {
       return gigabates;
@@ -150,7 +156,7 @@ export default {
       this.currentCategoryId = value;
     },
     color(value) {
-      this.currentColor = value;
+      this.currentColorId = value;
     },
   },
   methods: {
@@ -158,15 +164,33 @@ export default {
       this.$emit("update:priceFrom", this.currentPriceFrom);
       this.$emit("update:priceTo", this.currentPriceTo);
       this.$emit("update:categoryId", this.currentCategoryId);
-      this.$emit("update:color", this.currentColor);
+      this.$emit("update:color", this.currentColorId);
     },
     reset() {
       this.$emit("update:priceFrom", 0);
       this.$emit("update:priceTo", 0);
       this.$emit("update:categoryId", 0);
-      this.$emit("update:color", "");
+      this.$emit("update:color", 0);
     },
+    loadCategories() {
+      return axios.get(`${API_URL}/api/productCategories`)
+      .then((response) => this.categoriesData = response.data)
+      // fetch(`${API_URL}/api/productCategories`)
+      // .then((response) => response.json())
+      // .then((data) => this.categoriesData = data);
+    },
+    loadColors() {
+      return axios.get(`${API_URL}/api/colors`)
+      .then((response) => this.colorsData = response.data)
+      // fetch(`${API_URL}/api/colors`)
+      // .then((response) => response.json())
+      // .then((data) => this.colorsData = data);
+    }
   },
+  created() {
+    this.loadCategories()
+    this.loadColors()
+  }
 };
 </script>
 
