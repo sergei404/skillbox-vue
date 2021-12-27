@@ -38,9 +38,9 @@
             Итого: <span>{{totalPrice | numberFormat}} ₽</span>
           </p>
 
-          <button class="cart__button button button--primery" type="submit">
+          <router-link v-if="products.length" tag="button"  :to="{name: 'order'}" class="cart__button button button--primery" type="submit">
             Оформить заказ
-          </button>
+          </router-link>
         </div>
       </form>
     </section>
@@ -52,6 +52,7 @@ import CardItem from '../components/CardItem.vue'
 import {mapGetters} from 'vuex'
 import {numberFormat} from '../helpers/utils.js'
 
+
 export default {
   filters: {
     numberFormat
@@ -59,7 +60,6 @@ export default {
   components: {CardItem},
   computed: {
     ...mapGetters({products: 'cardDetailProduct', totalPrice: 'cardTotalPrice'}),
-    
-  }
+  },
 }
 </script>

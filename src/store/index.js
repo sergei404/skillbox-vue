@@ -10,20 +10,17 @@ export default new Vuex.Store({
   state: {
     cardProducts: [],
     userAccessKey: null,
-    cardProductsData: [] 
+    cardProductsData: [],
+    orderInfo: null
   },
   mutations: {
-    // addProductToCard(state, {productId, amount}) {
-    //   const item = state.cardProducts.find(item => item.productId === productId)
-    //   if(item) {
-    //     item.amount += amount
-    //   } else {
-    //     state.cardProducts.push({
-    //     productId,
-    //     amount
-    //   })
-    //   }
-    // },
+    updateOrderInfo(state, orderInfo) {
+      state.orderInfo = orderInfo
+    },
+    resetCard(state) {
+      state.cardProducts = []
+      state.cardProductsData = []
+    },
     updateAmount(state, {productId, amount}) {
       const item = state.cardProducts.find(item => item.productId === productId)
       if(item) {
@@ -49,6 +46,9 @@ export default new Vuex.Store({
     },
   },
   getters: {
+    cardInfo(state) {
+      return state.orderInfo
+    },
     cardDetailProduct(state) {
       return state.cardProducts.map((item) => {
         const product = state.cardProductsData.find((p) => p.product.id === item.productId).product
@@ -63,19 +63,23 @@ export default new Vuex.Store({
     },
     cardTotalPrice(state, getters) {
       return getters.cardDetailProduct.reduce((acc, {amount, product}) => acc + amount * product.price, 0)
-    }
+    },
   },
   actions: {
+    loadOrderInfo(context, orderId) {
+      return axios.get(`${API_URL}/api/orders/${orderId}`, {
+        params: {
+          userAccessKey: context.state.userAccessKey
+        }
+      })
+      .then(res => context.commit('updateOrderInfo', res.data))
+    },
     loadCard(context) {
       return axios.get(`${API_URL}/api/baskets`, {
         params: {
           userAccessKey: context.state.userAccessKey
         }
       })
-      // fetch(`${API_URL}/api/baskets` + new URLSearchParams({
-      //   userAccessKey: context.state.userAccessKey
-      // }))
-      // .then(response => response.json())
       .then(response => {
         if (!context.state.userAccessKey) {
           localStorage.setItem('userAccessKey', response.data.user.accessKey)
@@ -95,16 +99,6 @@ export default new Vuex.Store({
           userAccessKey: context.state.userAccessKey
         },
       })
-      // fetch(`${API_URL}/api/baskets` + new URLSearchParams({
-      //     userAccessKey: context.state.userAccessKey
-      // }),
-      // {
-      // method: 'POST',
-      // body: JSON.stringify({
-      //       productId: productId,
-      //       quantity: amount
-      //     })})
-      // .then(response => response.json())
       .then(response => {
         context.commit('updateCardProductsData', response.data.items);
         context.commit('syncCardProducts')
